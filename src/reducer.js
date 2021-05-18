@@ -4,6 +4,7 @@ export const initialState = {
     playing: false,
     item: null,
     token: null,
+    route: 'Home',
 };
 
 const reducer = (state, action) => {
@@ -23,15 +24,25 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 playlists: action.playlists,
+                discover_weekly: action.playlists.items[0]
             };
         case 'SET_DISCOVER_WEEKLY':
             return {
                 ...state,
                 discover_weekly: action.discover_weekly
+            };
+        case 'SET_ROUTE':
+            return {
+                ...state,
+                route: action.route
+            };
+        case 'SET_SEARCH':
+            return {
+                ...state,
+                searchResults: action.searchResults,
             }
         default:
             return state;
-
     }
 }
 

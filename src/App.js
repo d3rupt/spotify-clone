@@ -1,14 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 import Login from "./Login";
 import Player from "./Player";
 import './App.css';
 import {getTokenFromUrl} from "./spotify";
 import {useDataLayerValue} from './DataLayer';
 
+
 const spotify = new SpotifyWebApi();
 function App() {
-    const [{user, token}, dispatch] = useDataLayerValue();
+    const [{user, token, playlists}, dispatch] = useDataLayerValue();
 
     useEffect(() => {
         const hash = getTokenFromUrl();
@@ -31,29 +38,31 @@ function App() {
                 });
             });
             spotify.getUserPlaylists().then((playlists) => {
-                console.log('PLAYLISTS')
-                console.log(playlists.items[0])
                 dispatch({
                     type: 'SET_PLAYLISTS',
                     playlists: playlists,
                 });
-                dispatch({
-                    type: 'SET_DISCOVER_WEEKLY',
-                    discover_weekly: playlists.items[0].id,
+                spotify.getPlaylist(playlists.items[0].id).then(playlist => {
+                    dispatch({
+                        type: 'SET_DISCOVER_WEEKLY',
+                        discover_weekly: playlist
+                    })
                 })
             })
         }
     }, [])
 
   return (
-    <div className="App">
-        { token ? (
-            <Player spotify={spotify}/>
-        ) : (
-            <Login />
-        )
-        }
-    </div>
+    <Router>
+        <div className="App">
+            { token ? (
+                <Player spotify={spotify}/>
+            ) : (
+                <Login />
+            )
+            }
+        </div>
+    </Router>
   );
 }
 

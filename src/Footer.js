@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './Footer.css';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
@@ -7,25 +7,70 @@ import ShuffleIcon from '@material-ui/icons/Shuffle';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import { Grid, Slider} from '@material-ui/core';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
+import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
-export default function Footer() {
+import {useDataLayerValue} from "./DataLayer";
+
+export default function Footer({spotify}) {
+    const [playing, setPlaying] = useState(false);
+    const [shuffle, setShuffle] = useState(null);
+    const [currentTrack, setCurrentTrack] = useState(null);
+    const [repeat, setRepeat] = useState('off');
+    const [playState, setPlayState] = useState(null);
+    const [sliderValue, setSliderValue] = useState(0);
+    const [{token}, dispatch] = useDataLayerValue();
+    useEffect(() => {
+        setInterval(() => {
+            spotify.getMyCurrentPlaybackState().then(x => {
+               console.log(x)
+                if (x) {
+                    setSliderValue(x.device.volume_percent)
+                    if (shuffle !== x.shuffle_state) {
+                        setShuffle(x.shuffle_state)
+                    }
+                    if (currentTrack !== x.item) {
+                        setCurrentTrack(x.item)
+                    }
+                    if (playing != x.is_playing) {
+                        setPlaying(!playing)
+                    }
+                    if (repeat !== x.repeat_state) {
+                        setRepeat(x.repeat_state)
+                    }
+                }
+            })
+        }, 1000)
+    }, [])
+
+    const handleRepeat = () => {
+        spotify.setRepeat(repeat)
+    }
+    const shuffleChange = () => {
+        spotify.setShuffle(!shuffle)
+    }
     return(
         <div className='footer'>
             <div className='footer-left'>
                 <img
+                    src={currentTrack?.album?.images[0]?.url}
                     className='footer-albumLogo'
                 />
                 <div className='footer-songInfo'>
-                    <h4>Yeah!</h4>
-                    <p>Usher</p>
+                    <h4>{currentTrack?.name}</h4>
+                    <p>{currentTrack?.artists[0]?.name}</p>
                 </div>
             </div>
             <div className='footer-center'>
-                <ShuffleIcon className='footer-green' />
-                <SkipPreviousIcon className='footer-icon' />
-                <PlayCircleOutlineIcon fontSize='large' className='footer-icon' />
-                <SkipNextIcon className='footer-icon' />
-                <RepeatIcon className='footer-green' />
+                <ShuffleIcon onClick={shuffleChange} className={shuffle ? 'footer-icon-green' : 'footer-icon-inactive'}/>
+                <SkipPreviousIcon onClick={spotify.skipToPrevious} className='footer-icon' />
+                {playing ? (
+                    <PauseCircleOutlineIcon fontSize='large' className='footer-icon-green' />
+                ): (
+                    <PlayCircleOutlineIcon fontSize='large' className='footer-icon-inactive' />
+
+                )}
+                <SkipNextIcon onClick={spotify.skipToNext} className='footer-icon' />
+                <RepeatIcon className={repeat === 'context' || repeat === 'track' ? 'footer-icon-green' : 'footer-icon-inactive'} onClick={handleRepeat}/>
 
             </div>
             <div className='footer-right'>
@@ -37,7 +82,7 @@ export default function Footer() {
                         <VolumeDownIcon />
                     </Grid>
                     <Grid item xs>
-                        <Slider />
+                        <Slider min={0} max={100} value={sliderValue} onChange={(x) => spotify.setVolume(x)}/>
                     </Grid>
                 </Grid>
             </div>

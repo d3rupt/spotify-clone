@@ -1,10 +1,11 @@
 .footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #282828;
     position: fixed;
     bottom: 0;
-    height: 65px;
+    height: 45px;
     width: 97%;
     padding: 20px;
 }
@@ -12,6 +13,16 @@
 .footer-icon:hover {
     transition: transform 0.1s ease-in-out;
     transform: scale(1.2) !important;
+}
+.footer-icon {
+    color: white;
+}
+.footer-icon-green {
+    color: #1bd954;
+}
+.footer-icon-inactive {
+    opacity: 0.75;
+    color: grey;
 }
 .footer-left {
     flex: 0.3;
@@ -32,7 +43,6 @@
     width: 60px;
     margin-right: 20px;
     object-fit: contain;
-    border: 1px solid white;
 }
 .footer-center {
     display: flex;

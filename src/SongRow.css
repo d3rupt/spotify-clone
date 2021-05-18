@@ -1,17 +1,21 @@
 .songRow {
-    margin-left: 20px;
     padding: 20px;
     display: flex;
     align-items: center;
     color: white;
+    opacity: 0.8;
 }
 
 .songRow:hover {
     cursor: pointer;
-    background-color: black;
-    opacity: 0.8;
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    opacity: 1;
 }
 
+.songRow:hover > h1 {
+    color: white;
+}
 .songRow-info {
     margin-left: 20px;
 }

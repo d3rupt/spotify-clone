@@ -19,10 +19,10 @@ export default function Footer({spotify}) {
     const [playState, setPlayState] = useState(null);
     const [sliderValue, setSliderValue] = useState(0);
     const [{token}, dispatch] = useDataLayerValue();
+
     useEffect(() => {
         setInterval(() => {
             spotify.getMyCurrentPlaybackState().then(x => {
-               console.log(x)
                 if (x) {
                     setSliderValue(x.device.volume_percent)
                     if (shuffle !== x.shuffle_state) {
@@ -64,9 +64,17 @@ export default function Footer({spotify}) {
                 <ShuffleIcon onClick={shuffleChange} className={shuffle ? 'footer-icon-green' : 'footer-icon-inactive'}/>
                 <SkipPreviousIcon onClick={spotify.skipToPrevious} className='footer-icon' />
                 {playing ? (
-                    <PauseCircleOutlineIcon fontSize='large' className='footer-icon-green' />
+                    <div onClick={() => {
+                        spotify.pause()
+                    }}>
+                        <PauseCircleOutlineIcon fontSize='large' className='footer-icon-green' />
+                    </div>
                 ): (
-                    <PlayCircleOutlineIcon fontSize='large' className='footer-icon-inactive' />
+                    <div onClick={() => {
+                        spotify.play()
+                    }}>
+                        <PlayCircleOutlineIcon fontSize='large' className='footer-icon-inactive' />
+                    </div>
 
                 )}
                 <SkipNextIcon onClick={spotify.skipToNext} className='footer-icon' />

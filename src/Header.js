@@ -15,12 +15,10 @@ export default function Header({spotify}) {
 
     const handleSearch = (e) => {
         console.log(e.target.value)
-        if (e.target.value.length > 0) {
-            dispatch({
-                type: 'SET_SEARCH',
-                searchResults: e.target.value,
-            })
-        }
+        dispatch({
+            type: 'SET_SEARCH',
+            searchResults: e.target.value,
+        })
     }
 
     return(
@@ -28,7 +26,7 @@ export default function Header({spotify}) {
             <div className={search ? 'header-left' : 'header-left search-inactive'}>
                 <SearchIcon />
                 <input
-                    placeholder='Search for Artists, Songs or Albums'
+                    placeholder='Search for a Song'
                     type='text'
                     onChange={handleSearch}
                 />

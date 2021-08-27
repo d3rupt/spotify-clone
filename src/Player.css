@@ -1,3 +1,14 @@
+.player {
+    min-height: 90vh;
+    width: 90%;
+    padding: 1rem;
+    background: #eaf0f8;
+    backdrop-filter: blur(3px);
+    /*border: 2px inset rgba(255,255,255,0.5);*/
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.25);
+    border-radius: 1rem;
+}
+
 .player-body {
-    display: flex;
+    height: 100%;
 }

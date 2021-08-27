@@ -1,7 +1,9 @@
 export const authEndpont =
 'https://accounts.spotify.com/authorize';
 
-const redirectUri = 'http://localhost:3000/callback';
+const redirectUri = 'https://nostalgic-hugle-d67c54.netlify.app/'
+//const redirectUri = 'http://localhost:3000/callback';
+//const redirectUri = 'https://spotify-clone-7cc54.web.app/callback';
 
 
 const clientId = 'b4e57e3c448a4bafa65dda31668f22bf';

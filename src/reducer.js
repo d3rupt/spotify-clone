@@ -5,6 +5,7 @@ export const initialState = {
     item: null,
     token: null,
     route: 'Home',
+    searchResults: '',
 };
 
 const reducer = (state, action) => {
@@ -40,7 +41,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 searchResults: action.searchResults,
-            }
+            };
         default:
             return state;
     }

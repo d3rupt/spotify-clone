@@ -13,18 +13,35 @@
     opacity: 1;
 }
 
-.songRow:hover > h1 {
+.songRow:hover div p {
     color: white;
 }
+.songRow-icons {
+    opacity: 0;
+}
+.songRow:hover .songRow-icons {
+    opacity: 1;
+}
 .songRow-info {
+    display: flex;
+    flex: 1;
+    margin-left: 20px;
+    justify-content: space-between;
+}
+
+.songRow-info-search {
     margin-left: 20px;
 }
 
-.songRow-info > h1 {
+.songRow-info-search > h1 {
+    font-size: 14px;
+}
+
+.songRow-info > div > h1 {
     font-size: 16px;
 }
 
-.songRow-info > p {
+.songRow-info > div > p {
     font-size: 14px;
     margin-top: 3px;
     color: grey;

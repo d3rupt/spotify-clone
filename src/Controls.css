@@ -1,0 +1,110 @@
+.playing-right {
+    height: 15rem;
+    padding: 1rem;
+    flex-direction: column;
+    /*background: #eaf0f8;*/
+    border-radius: 0.25rem;
+    /*box-shadow: -6px -6px 6px rgba(255,255,255,0.75), 6px 6px 6px rgba(0,0,0,0.25);*/
+}
+
+.playing-right > * {
+    margin: 0.25rem;
+}
+
+.playing-info {
+    height: 66.66%;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: -3px -3px 3px rgba(255,255,255,0.75), 3px 3px 3px rgba(0,128,255, 0.2), 3px 3px 3px rgba(0,0,0,0.2);
+}
+
+.playing-infoText {
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    width: 95%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    bottom: 0.25rem;
+    font-size: 75%;
+    border-radius: 0.25rem;
+    backdrop-filter: blur(5px);
+}
+
+.playing-info img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border: 2px solid #eaf0f8;
+    border-radius: 0.4rem;
+}
+
+#fave {
+    position: absolute;
+    right: 1rem;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.img-shader {
+    position: absolute;
+    top: 0.25rem;
+    width: 100%;
+    height: 20%;
+    z-index: 100;
+    background: linear-gradient(to top, transparent, rgba(255,255,255,0.25), transparent);
+}
+
+.playing-controls {
+    height: 33.33%;
+    justify-content: space-between;
+}
+
+.playing-button {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    max-height: 3rem;
+    max-width: 3rem;
+    border-radius: 0.25rem;
+    box-shadow: -3px -3px 3px rgba(255,255,255,0.75), 3px 3px 3px rgba(0,128,255,0.2), 3px 3px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
+    color: rgba(0,0,0,0.25);
+    transition: 0.1s;
+}
+
+.playing-button:hover {
+    color: #1bd954;
+}
+
+.playing-playButton {
+    border-radius: 50%;
+    opacity: 0.75;
+    background: rgba(0,0,0,0.75);
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.1s;
+}
+
+.button-pressed {
+    color: #1bd954;
+    box-shadow: inset -3px -3px 3px rgba(255,255,255,0.75), inset 3px 3px 3px rgba(0,128,255,0.2), 3px 3px 3px rgba(0,0,0,0.1);
+
+}
+
+.playing-playButton:hover {
+    background: #1bd954;
+    color: rgba(0,0,0,0.75);
+}
+
+.playing-playlist {
+    padding-left: 30px;
+}
+
+.body-infoText > p {
+    font-size: 14px;
+}

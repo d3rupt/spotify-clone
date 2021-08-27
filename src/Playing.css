@@ -1,0 +1,99 @@
+.player-container {
+    z-index: 1;
+}
+
+.playing {
+    /*min-height: 100vh;*/
+    background: #F5FAFA;
+    color: white;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+.playing-top {
+    height: 75%;
+    flex-wrap: wrap;
+}
+
+.playing-bottom {
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    color: rgba(0,0,0,0.5);
+    padding: 1rem;
+}
+
+.progress-text {
+    margin: 0.5rem 0;
+    position: relative;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.progress-text > * {
+    margin: 0.5rem;
+}
+
+.progress-textInner > * {
+    margin-right: 1rem;
+}
+
+.progress-text p:nth-child(1) {
+    color: #333;
+}
+
+.progress-bar {
+    position: relative;
+    height: 2rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 0.25rem;
+    box-shadow: inset -6px -6px 6px rgba(255,255,255,0.75), inset 6px 6px 6px rgba(0,128,255,0.2);
+}
+
+.progress {
+    position: absolute;
+    right: 100%;
+    margin: auto 0;
+    height: 1.75rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    background: linear-gradient(to right, #eaf0f8, #1bd954);
+    transition: all 0.75s;
+    /*box-shadow: inset -3px -3px 3px rgba(0,0,0,0.25), inset 3px 3px 3px rgba(255,255,255,0.75);*/
+}
+
+.slider {
+    /*position: absolute;
+    right: 0;*/
+    -webkit-appearance: none; /* Override default CSS styles */
+    appearance: none;
+    height: 0.25rem;
+    background: #eaf0f8;
+    border-radius: 1rem;
+    box-shadow: -1px -1px 3px rgba(255,255,255,0.75), 1px 1px 3px rgba(0,128,255,0.2), 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: #1bd954;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default CSS styles */
+    appearance: none;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background: #eaf0f8;
+    box-shadow: -3px -3px 3px rgba(255,255,255,0.75), 3px 3px 3px rgba(0,128,255,0.2), 3px 3px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.play-indicator {
+    border-radius: 50%;
+    padding: 0;
+    box-shadow: -3px -3px 3px rgba(255,255,255,0.75), 3px 3px 3px rgba(0,128,255,0.2), 3px 3px 3px rgba(0,0,0,0.1);
+}

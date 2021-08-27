@@ -11,9 +11,11 @@ import Player from "./Player";
 import './App.css';
 import {getTokenFromUrl} from "./spotify";
 import {useDataLayerValue} from './DataLayer';
+import Playing from "./Playing";
 
 
 const spotify = new SpotifyWebApi();
+
 function App() {
     const [{user, token, playlists}, dispatch] = useDataLayerValue();
 
@@ -54,9 +56,10 @@ function App() {
 
   return (
     <Router>
-        <div className="App">
+        <div className="App col-12 col-m-12 co-l-12 flex">
+            <div className='app-blur col-12 col-m-12 col-l-12'/>
             { token ? (
-                <Player spotify={spotify}/>
+                <Playing  spotify={spotify}/>
             ) : (
                 <Login />
             )

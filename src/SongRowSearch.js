@@ -13,7 +13,7 @@ export default function SongRowSearch({spotify, track}) {
     return(
         <div className='songRow' onClick={handleClick} key={track.id}>
             <img className='songRow-album' src={track?.album?.images[0]?.url} alt=''/>
-            <div className='songRow-info'>
+            <div className='songRow-info-search'>
                 <h1>{track.name}</h1>
                 <p>
                     {track.artists
